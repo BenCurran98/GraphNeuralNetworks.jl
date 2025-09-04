@@ -104,7 +104,7 @@ source, target = edge_index(g)
 A `GNNGraph` can be sent to the GPU, for example by using Flux.jl's `gpu` function
 or MLDataDevices.jl's utilities. 
 """
-struct GNNGraph{T <: Union{COO_T, ADJMAT_T}, V <: Union{Nothing, AbstractVector{<:Integer}}} <: AbstractGNNGraph{T}
+struct GNNGraph{T <: Union{COO_T, ADJMAT_T}, V <: Union{Nothing, AbstractVector}} <: AbstractGNNGraph{T}
     graph::T
     num_nodes::Int
     num_edges::Int
@@ -124,7 +124,7 @@ function GNNGraph(graph::T,
                   graph_indicator::V,
                   ndata::DataStore,
                   edata::DataStore,
-                  gdata::DataStore) where {T <: Union{COO_T, ADJMAT_T}, V <: Union{Nothing, AbstractVector{<:Integer}}}
+                  gdata::DataStore) where {T <: Union{COO_T, ADJMAT_T}, V <: Union{Nothing, AbstractVector}}
     return GNNGraph{T, V}(graph, num_nodes, num_edges, num_graphs,
                        graph_indicator, ndata, edata, gdata, false)
 end
