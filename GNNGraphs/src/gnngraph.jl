@@ -121,10 +121,10 @@ function GNNGraph(graph::T,
                   num_nodes::Int,
                   num_edges::Int,
                   num_graphs::Int,
-                  graph_indicator::Union{Nothing, AVecI},
+                  graph_indicator::V,
                   ndata::DataStore,
                   edata::DataStore,
-                  gdata::DataStore) where {T <: Union{COO_T, ADJMAT_T}}
+                  gdata::DataStore) where {T <: Union{COO_T, ADJMAT_T}, V <: Union{Nothing, AbstractVector{<:Integer}}}
     return GNNGraph{T}(graph, num_nodes, num_edges, num_graphs,
                        graph_indicator, ndata, edata, gdata, false)
 end
